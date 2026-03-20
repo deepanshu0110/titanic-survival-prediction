@@ -1,10 +1,10 @@
 """
 Titanic Survival Prediction - Main Script
-Author: [Your Name]
+Author: Deepanshu Garg
 Date: 2025
 
 This script performs complete analysis and prediction of Titanic passenger survival.
-Perfect for beginners learning machine learning!
+End-to-end Titanic survival prediction with EDA, feature engineering, and model evaluation.
 """
 
 import pandas as pd
