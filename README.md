@@ -5,24 +5,13 @@
 ![Accuracy](https://img.shields.io/badge/Accuracy-82--85%25-brightgreen?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)
 
-End-to-end ML pipeline predicting passenger survival on the Titanic — EDA, preprocessing, model training, evaluation, and serialization.
+End-to-end binary classification pipeline on the Kaggle Titanic dataset — EDA, preprocessing, model training, evaluation, and serialization.
 
 ---
 
 ## Business Problem
 
-Given passenger attributes (age, sex, class, fare), predict who survived. Binary classification mapping directly to real-world use cases like churn prediction and loan default.
-
----
-
-## Dataset
-
-| Property | Value |
-|---|---|
-| Source | Kaggle Titanic Competition |
-| Rows | 891 passengers |
-| Target | Survived (0 = No, 1 = Yes) |
-| Key Features | Age, Sex, Pclass, Fare, SibSp, Parch, Embarked |
+Given passenger attributes (age, sex, ticket class, fare), predict who survived. The same pipeline applies to real-world tasks: customer churn, loan default, fraud detection.
 
 ---
 
@@ -31,27 +20,12 @@ Given passenger attributes (age, sex, class, fare), predict who survived. Binary
 | Model | Accuracy |
 |---|---|
 | Logistic Regression | ~79% |
-| **Random Forest** | **~82-85%** |
+| **Random Forest** | **~82–85%** |
 
 **Key Insights:**
-- Women had a significantly higher survival rate than men
+- Women survived at ~3x the rate of men
 - First-class passengers were ~3x more likely to survive than third-class
-- Children under 10 had higher survival rates across all classes
-
----
-
-## Project Structure
-
-```
-titanic-survival-prediction/
-├── main.py                  # Full ML pipeline
-├── roc_curve_fix.py         # ROC curve helper
-├── data/train.csv           # Kaggle dataset
-├── models/titanic_model.pkl # Trained model
-├── plots/                   # EDA visualizations
-├── requirements.txt
-└── README.md
-```
+- Children under 10 had above-average survival across all classes
 
 ---
 
@@ -61,20 +35,19 @@ titanic-survival-prediction/
 git clone https://github.com/deepanshu0110/titanic-survival-prediction.git
 cd titanic-survival-prediction
 pip install -r requirements.txt
-# Add train.csv to data/ from Kaggle
+# Place Kaggle train.csv in data/
 python main.py
 ```
 
 ---
 
-## ML Pipeline Steps
+## ML Pipeline
 
-1. Data Loading — Pandas CSV ingestion
-2. EDA — survival distribution, correlation heatmap
-3. Preprocessing — imputation, label encoding, scaling
-4. Training — Logistic Regression + Random Forest with CV
-5. Evaluation — accuracy, F1, confusion matrix, ROC-AUC
-6. Serialization — best model saved as .pkl
+1. EDA — survival distribution, correlation heatmap
+2. Preprocessing — imputation, encoding, scaling
+3. Training — Logistic Regression + Random Forest with cross-validation
+4. Evaluation — accuracy, F1, confusion matrix, ROC-AUC
+5. Serialization — best model saved as .pkl
 
 ---
 
@@ -84,6 +57,10 @@ Python · Pandas · NumPy · Scikit-learn · Matplotlib · Seaborn
 
 ---
 
-## License
+## Author
+
+**Deepanshu Garg** — Freelance Data Scientist
+- GitHub: [@deepanshu0110](https://github.com/deepanshu0110)
+- Hire: [freelancer.com/u/deepanshu0110](https://www.freelancer.com/u/deepanshu0110)
 
 MIT License
