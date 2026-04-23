@@ -330,10 +330,21 @@ class TitanicPredictor:
             axes[1,0].set_title('Feature Importance (Random Forest)')
             axes[1,0].set_xlabel('Importance')
         
-        # 4. ROC Curve would go here (simplified for beginners)
-        axes[1,1].text(0.5, 0.5, 'ROC Curve\n(Advanced Topic)', 
-                      ha='center', va='center', transform=axes[1,1].transAxes, fontsize=12)
-        axes[1,1].set_title('ROC Curve (Future Enhancement)')
+        # 4. ROC Curve comparison
+        from sklearn.metrics import roc_curve, roc_auc_score
+        for name_r, res in results.items():
+            model_r = res['model']
+            if hasattr(model_r, 'predict_proba'):
+                y_prob = model_r.predict_proba(self.X_test)[:, 1]
+                fpr, tpr, _ = roc_curve(self.y_test, y_prob)
+                auc = roc_auc_score(self.y_test, y_prob)
+                axes[1, 1].plot(fpr, tpr, label=f"{name_r} (AUC={auc:.3f})")
+        axes[1, 1].plot([0, 1], [0, 1], 'k--', label='Random')
+        axes[1, 1].set_xlabel('False Positive Rate')
+        axes[1, 1].set_ylabel('True Positive Rate')
+        axes[1, 1].set_title('ROC Curve Comparison')
+        axes[1, 1].legend()
+        axes[1, 1].grid(True, alpha=0.3)
         
         plt.tight_layout()
         plt.savefig('plots/model_results.png', dpi=300, bbox_inches='tight')
@@ -421,8 +432,8 @@ Generated on {pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')}
         # Step 5: Save model
         self.save_model()
         
-        # Step 6: Create documentation
-        self.create_readme()
+        # Step 6: Documentation lives in GitHub README — not regenerated here
+        # self.create_readme()  # disabled: would overwrite the curated GitHub README
         
         print("\n" + "=" * 50)
         print("🎉 PROJECT COMPLETED SUCCESSFULLY!")
@@ -430,7 +441,7 @@ Generated on {pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')}
         print("   - plots/data_exploration.png")
         print("   - plots/model_results.png") 
         print("   - models/titanic_model.pkl")
-        print("   - README.md")
+        # README is maintained on GitHub, not regenerated locally
         print("\n🚀 Ready to deploy on GitHub!")
         print("=" * 50)
 
