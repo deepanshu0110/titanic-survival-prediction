@@ -172,7 +172,7 @@ class TitanicPredictor:
         df['IsAlone'] = (df['FamilySize'] == 1).astype(int)
         
         # Extract Title from Name
-        df['Title'] = df['Name'].str.extract(' ([A-Za-z]+)\.', expand=False)
+        df['Title'] = df['Name'].str.extract(r' ([A-Za-z]+)\.', expand=False)
         df['Title'] = df['Title'].replace(['Lady', 'Countess', 'Capt', 'Col', 'Don', 
                                           'Dr', 'Major', 'Rev', 'Sir', 'Jonkheer', 'Dona'], 'Rare')
         df['Title'] = df['Title'].replace('Mlle', 'Miss')
