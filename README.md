@@ -57,6 +57,17 @@ python main.py
 
 ---
 
+## Tests
+
+```bash
+pip install pytest
+pytest tests/ -v
+```
+
+The tests runs `main.py` end to end and checks accuracy and the saved model. GitHub Actions runs them on every push.
+
+---
+
 ## Tech Stack
 
 Python · Pandas · NumPy · Scikit-learn · Matplotlib · Seaborn
