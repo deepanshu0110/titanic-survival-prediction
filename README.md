@@ -4,7 +4,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue?style=flat-square&logo=python)
 ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-1.0+-orange?style=flat-square)
-![Accuracy](https://img.shields.io/badge/Accuracy-82--85%25-brightgreen?style=flat-square)
+![Accuracy](https://img.shields.io/badge/Test%20accuracy-80.4%25-brightgreen?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)
 
 End-to-end binary classification pipeline on the Kaggle Titanic dataset — EDA, preprocessing, model training, evaluation, and serialization.
@@ -19,15 +19,19 @@ Given passenger attributes (age, sex, ticket class, fare), predict who survived.
 
 ## Results
 
-| Model | Accuracy |
-|---|---|
-| Logistic Regression | ~79% |
-| **Random Forest** | **~82–85%** |
+Kaggle `train.csv` (891 passengers), 80/20 split. The script selects the best model by cross-validation score.
 
-**Key Insights:**
-- Women survived at ~3x the rate of men
-- First-class passengers were ~3x more likely to survive than third-class
-- Children under 10 had above-average survival across all classes
+| Model | Test accuracy | Test F1 | CV accuracy |
+|---|---|---|---|
+| Random Forest | 80.4% | 0.733 | 79.2% (± 6.8) |
+| **Logistic Regression** | **80.4%** | **0.737** | **80.1% (± 5.7)** |
+
+Both models tie on the test set. Logistic Regression wins on cross-validation, so it is the saved model.
+
+**Key insights** (from the training data):
+- Women survived at 74%, men at 19%, about 3.9 times the rate
+- First class survived at 63%, third class at 24%, about 2.6 times the rate
+- Children under 10 survived at 61%, above the 38% average, and above their class average in every class
 
 ---
 
